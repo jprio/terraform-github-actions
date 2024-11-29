@@ -1,20 +1,24 @@
-provider “aws” {
-  region = “eu-west-1”
-}
-
 terraform {
-  backend "s3" {
-    bucket         = "my-terraform-state-bucket"
-    key            = "path/to/my/key"
-    region         = "eu-west-1"
+ required_providers {
+   aws = {
+     source = "hashicorp/aws"
+   }
+ }
+ 
+ backend "s3" {
+   region = "us-west-2"
+   key    = "terraform.tfstate"
+ }
 }
-
-terraform {
-  backend "s3" {
-    bucket         = "my-terraform-state-bucket"
-    key            = "path/to/my/key"
-    region         = "eu-west-1"
-    dynamodb_table = "my-terraform-lock-table"
-    encrypt        = true
+ 
+provider "aws" {
+ region = "us-west-2"
 }
-
+ 
+resource "aws_instance" "test_instance" {
+ ami           = "ami-830c94e3"
+ instance_type = "t2.nano"
+ tags = {
+   Name = "test_instance"
+ }
+}
