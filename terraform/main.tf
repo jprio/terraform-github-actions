@@ -6,13 +6,13 @@ terraform {
   }
 
   backend "s3" {
-    region = "us-west-2"
+    region = "eu-west-3"
     key    = "terraform.tfstate"
   }
 }
 
 provider "aws" {
-  region = "us-west-2"
+  region = "eu-west-3"
 }
 
 resource "aws_instance" "test_instance1" {
