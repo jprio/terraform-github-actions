@@ -15,7 +15,7 @@ provider "aws" {
   region = "eu-west-3"
 }
 
-resource "aws_instance" "test_instance" {
+resource "aws_instance" "test_instance1" {
   ami           = "ami-03216a20ecc5d72ee"
   instance_type = "t2.nano"
   tags = {
